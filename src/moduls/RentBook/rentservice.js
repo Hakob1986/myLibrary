@@ -17,14 +17,13 @@ export class Rentbookservice {
   }
 
   static findMaxRatedBook() {
-    return RentBook.find().sort({ rated: 1 })
-    .limit(5)
+    return RentBook.find().sort({ rated: 1 }).limit(5);
   }
 
-  static findAvgRatedBooks(){
+  static findAvgRatedBooks() {
     return RentBook.aggregate([
       // { $match: { book_id: "$6221bce4bc0e59d7213a7c66" } },
-      { $group: { _id: "$book_id", AVG: { $avg: "$rated" } } }
-   ])
+      { $group: { _id: "$book_id", AVG: { $avg: "$rated" } } },
+    ]);
   }
 }

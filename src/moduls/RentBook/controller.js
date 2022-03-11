@@ -1,4 +1,3 @@
-    
 import { Book } from "../../models/book";
 import { BookService } from "../Book/bookservice";
 import { Rentbookservice } from "./rentservice";
@@ -38,13 +37,13 @@ export class Rentcontroler {
       .catch((err) => res.status(500).send(err));
   }
 
-  static async findSumRated(req,res){
-     Rentbookservice.findAvgRatedBooks()
-   .then((rentbook) => {
-    let aaa= rentbook.filter(elm=> elm._id == req.query.id)
-       
-     res.json(aaa)
-   })
-   .catch((err) => res.status(500).send(err));
+  static async findSumRated(req, res) {
+    Rentbookservice.findAvgRatedBooks()
+      .then((rentbook) => {
+        let aaa = rentbook.filter((elm) => elm._id == req.query.id);
+
+        res.json(aaa);
+      })
+      .catch((err) => res.status(500).send(err));
   }
 }
