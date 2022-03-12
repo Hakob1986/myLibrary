@@ -10,10 +10,23 @@ export class UserService {
   }
 
   static async updateUserById({ data }, { reqbody }) {
-    return User.findByIdAndUpdate(data, reqbody);
+    return User.bulkWrite([
+      {
+        updateOne: {
+          filter: { _id: data },
+          update: { $set: reqbody },
+        },
+      },
+    ]);
   }
 
   static async deleteUserById({ data }) {
-    return User.findByIdAndDelete(data);
+    return User.bulkWrite([
+      {
+        deleteOne: {
+          filter: { _id: data }
+        },
+      },
+    ]);
   }
 }

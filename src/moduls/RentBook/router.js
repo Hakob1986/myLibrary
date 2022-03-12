@@ -8,6 +8,6 @@ router.get("/max",Rentcontroler.getBookMaxRate);
 router.patch("/:id",Rentcontroler.updateRentBook);
 router.post("/", Rentcontroler.addRentBook);
 router.delete("/:id",Rentcontroler.deleteRentBook);
-router.get("/findavg", Rentcontroler.findSumRated)
+router.get("/findavg", Rentcontroler.findAvgRated)
 
 export default router;

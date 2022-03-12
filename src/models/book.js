@@ -7,18 +7,18 @@ const book = new Schema(
     name: {
       type: String,
     },
-    genre_id: [
+    genre_id: 
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Genre",
       },
-    ],
-    author_id: [
+    
+    author_id: 
       {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Author",
       },
-    ],
+    
   },
   { timestamps: true },
   {

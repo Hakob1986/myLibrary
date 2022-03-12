@@ -1,9 +1,15 @@
 import { Author } from "../../models/author";
 import { Book } from "../../models/book";
+import { Genre } from "../../models/genre";
 
 export class BookService {
   static addBook({ data }) {
     return Book.create(data);
+  }
+
+  static createBookMany({data}){ 
+    return  Book.insertMany(data)
+    ;
   }
 
   static findAllBook() {
@@ -24,7 +30,7 @@ export class BookService {
 
   static async serchBookByAuthorandGenre({sort}){
     return Book.find().sort({name:sort})
-    .populate({path:"author_id"})
-    .populate({path:"genre_id"});
+    .populate({path:"author_id", select:'name'})
+    .populate({path:"genre_id", select : "name"});
   }
 }

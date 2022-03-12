@@ -3,6 +3,8 @@ import { BookService } from "../Book/bookservice";
 import { Rentbookservice } from "./rentservice";
 
 export class Rentcontroler {
+
+   // Post RentBook
   static async addRentBook(req, res) {
     return Rentbookservice.addrentbook({ data: req.body })
       .then(() => {
@@ -11,6 +13,7 @@ export class Rentcontroler {
       .catch((err) => res.status(500).send(err));
   }
 
+  // Get All RentBook
   static async getAllRentBook(req, res) {
     return Rentbookservice.findAllRentBook()
       .then((rentbook) => {
@@ -19,15 +22,17 @@ export class Rentcontroler {
       .catch((err) => res.status(500).send(err));
   }
 
+  // Delete RentBook By ID
   static async deleteRentBook(req, res) {
     Rentbookservice.deleteRentBookById({ data: req.params.id })
-      .then(() => res.send("Deleted Author"))
+      .then(() => res.send("Deleted RentBook"))
       .catch((err) => res.status(500).send(err));
   }
 
+  // Update RentBook By ID
   static async updateRentBook(req, res) {
-    Rentbookservice.updateRentBookById({ data: (req.params.id, req.body) })
-      .then(() => res.send("Update Author"))
+    Rentbookservice.updateRentBookById({ data: req.params.id}, {reqbody:req.body})
+      .then(() => res.send("Update RentBook"))
       .catch((err) => res.status(500).send(err));
   }
 
@@ -37,7 +42,8 @@ export class Rentcontroler {
       .catch((err) => res.status(500).send(err));
   }
 
-  static async findSumRated(req, res) {
+  // Get Top AVG  By Book Rate 
+  static async findAvgRated(req, res) {
     Rentbookservice.findAvgRatedBooks()
       .then((rentbook) => {
         let aaa = rentbook.filter((elm) => elm._id == req.query.id);

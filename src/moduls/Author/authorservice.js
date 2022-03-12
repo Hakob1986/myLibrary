@@ -5,6 +5,9 @@ export class AuthorService {
     return Author.create(data);
   }
 
+  static createManyAuthor({ data }) {
+    return Author.insertMany(data);
+  }
   static async findAll() {
     return Author.find();
   }
