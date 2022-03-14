@@ -10,16 +10,19 @@ export class UserController {
 
   // Get All User
   static async getAllUser(req, res) {
-    UserService.findAllUser()
-      .then((user) => {
-        res.send(user);
-      })
-      .catch((err) => res.status(500).send(err));
+
+
+    try {
+      const a = await UserService.findAllUser();
+      res.send(a);
+    } catch (error) {
+      res.status(500).send(error);
+    }
   }
 
   // Update User By ID
   static async updateUser(req, res) {
-    UserService.updateUserById({ data: req.params.id}, {reqbody:req.body} )
+    UserService.updateUserById({ data: req.params.id }, { reqbody: req.body })
       .then(() => res.send("Update User"))
       .catch((err) => res.status(500).send(err));
   }

@@ -5,7 +5,7 @@ export class UserService {
     return User.insertMany(data);
   }
 
-  static findAllUser() {
+  static async findAllUser() {
     return User.find();
   }
 
